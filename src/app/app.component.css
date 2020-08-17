@@ -1,0 +1,35 @@
+.main-container{
+    margin-top: 20px;
+    padding: 20px;
+    background-color:#EDEFF0;
+    min-height: 500px;
+}
+
+.navbar-brand{
+    color: white;
+    background-coloR:#1fae66;
+    padding: 10px;
+}
+
+.navbar-nav{
+    margin-left: 20px;
+}
+
+.navbar-nav li>a{
+    color: white;
+    border: 1px solid white;
+    margin: 2px;
+    border-radius: 2px;
+}
+
+.loader{
+    position: absolute;
+    /* margin: 45%; */
+    width: 50%;
+    height: 10%;
+    z-index: 1000;
+    margin-left: 24%;
+}
+.loader img{
+    width: 100%;
+}

@@ -1,0 +1,29 @@
+.btm-m-20{
+    margin-bottom:20px;
+}
+
+.detail-img-prop{
+    width: 100%;
+    height: 230px;
+    border:1px solid gray;
+}
+
+.left-content{
+    float: left;
+    width: 26%;
+    height: auto;
+    margin:2%;
+}
+
+.right-content{
+    float: left;
+    width: 66%;
+    height: auto;
+    margin:2%;
+}
+
+.btn-prop{
+    margin-right: 0;
+    margin-bottom: 10px;
+    float:right;
+}

@@ -1,0 +1,122 @@
+<div class="row" >
+  <div class="col-md-1"></div>
+  <div class="col-md-10" >
+   <h2>Add Product</h2>
+  </div>
+  <div class="col-md-1"></div>
+</div>
+<form #myform="ngForm"   class="form-horizontal">
+<div class="row btm-m-20" >
+  <div class="col-md-1"></div>
+  <div class="col-md-7" >
+  
+      <div class="row btm-m-20">
+          <div class="col-11">
+            Product Name
+            <input id="txtname" name="NAME" type="text" placeholder="" [(ngModel)]="_productData.NAME" #name="ngModel" class="form-control input-sm" required="">
+            <div  class="help-block" *ngIf="name.touched"> 
+              <p  *ngIf="name.errors" style="color: red;">Product Name is Required</p>
+            </div>
+          </div>
+          
+        </div>
+        <div class="row btm-m-20">
+          <div class="col-11">
+            Description  
+            <textarea  name="DESCRIPTION" type="textarea" [(ngModel)]="_productData.DESCRIPTION"  class="form-control input-md" maxlength="100"></textarea>
+            <p><span >({{100 -_productData.DESCRIPTION.length}} Characters left)</span></p>
+          </div>
+        </div>
+
+        <div class="row btm-m-20">
+          <div class="col-md-3">
+            Price
+            <input name="PRICE" type="text" placeholder="" [(ngModel)]="_productData.PRICE" #price="ngModel" pattern="^\d+(\.\d{1,2})?$" class="form-control input-sm" required="">
+            <div  class="help-block" *ngIf="price.errors"> 
+              <p  *ngIf="price.errors.pattern" style="color: red;">Only Numbers Allowed !</p>
+            </div>
+          </div>
+          <div class="col-md-3">
+            
+          </div>
+        </div>
+       <div class="row btm-m-20" style="margin-top: 20px;">
+          <div class="col-md-2" >
+            <button name="btnSubmit" (click)="btnSubmit()" [disabled]="myform.invalid"  class="btn btn-sm btn-primary"><i class="fa fa-floppy-o" aria-hidden="true"></i>&nbsp;SUBMIT</button> 
+          </div>
+          <div class="col-md-2" >
+            
+          </div>
+       </div>
+  
+  </div>
+  <div class="col-md-3">
+    <img [src]='imgURL' class="img-prop"> <br>
+    <input name="IMAGENAME" type="file" [(ngModel)]="_productData.IMAGENAME" class="form-control input-md" accept="image/*" (change)="onFileLoad($event)">
+  </div>
+  <div class="col-md-1"></div>
+
+  </div>
+</form>
+  
+<div class="row">
+  <div class="col-md-1"></div>
+    <div class="col-md-10"><hr></div>
+    <div class="col-md-1"></div>
+</div>
+  <div class="row"  style="margin-top: 50px;">
+    <div class="col-md-1"></div>
+    <div class="col-md-10">
+<div class="d-flex mb-3">
+  <div class="d-flex p2 flex-fill justify-content-start">
+    <div class=" align-items-center justify-content-start" style="margin-top: 10px;">
+      <h2>Product List</h2>
+    </div>
+    </div>
+  <div class="p2"></div>
+  <div class="p2  justify-content-end">
+    <div class="input-group">
+      <input id="searchBox" name="searchTerm" [(ngModel)]="searchTerm" class="form-control" placeholder="Search By Product Name" type="text" style="width: 300px;">
+      <span class="input-group-addon"></span>
+    </div>
+  </div>
+</div>
+</div>
+<div class="col-md-1"></div>
+</div>
+<div class="row">
+  <div class="col-md-1"></div>
+    <div class="col-10 d-flex align-items-center justify-content-center">
+        <table class="table table-bordered">
+            <thead style="text-align: center;background-color:#1fae66;color: white;font-weight: lighter;">
+              <tr>
+                <th scope="col">#</th>
+                <th>Product Name</th>
+                <th scope="col">Price</th>
+                <th scope="col">Image</th>
+                <th scope="col">Actions</th>
+              </tr>
+            </thead>
+            <tbody style="text-align: center;">
+              <tr *ngFor="let prod of productList|searchProduct:searchTerm">  
+                <td>{{prod.PRODUCTID}}</td>  
+                <td>{{prod.NAME}}</td>  
+                <td>{{prod.PRICE}}</td>  
+                <td><img  [src]='prod.BASE64CONTENT' class="table-row-img"></td>  
+                <td>
+                  <button (click)="viewProduct(prod)" class="btn btn-sm btn-warning" style="color: white;">
+                    <i class="fa fa-eye" aria-hidden="true"></i>
+                  </button> &nbsp;&nbsp;
+                  <button (click)="deleteProduct(prod.PRODUCTID)" class="btn btn-sm btn-danger">
+                    <i class="fa fa-trash" aria-hidden="true"></i>
+                </button>
+              </td> 
+              </tr>  
+              <tr *ngIf="isEmpty">
+                <td colspan="5" style="text-align: center;"><h3>No records to show.</h3></td>
+              </tr>
+            </tbody>
+          </table>
+    </div>
+    <div class="col-md-1"></div>
+</div>
